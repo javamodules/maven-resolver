@@ -27,4 +27,15 @@ module org.apache.maven.resolver.impl {
     requires org.apache.maven.resolver.spi;
     requires org.apache.maven.resolver.named;
     requires org.apache.maven.resolver.util;
+
+    exports org.eclipse.aether.impl;
+    exports org.eclipse.aether.internal.impl;
+    exports org.eclipse.aether.internal.impl.checksum;
+    exports org.eclipse.aether.internal.impl.collect;
+    exports org.eclipse.aether.internal.impl.filter;
+    exports org.eclipse.aether.internal.impl.resolution;
+    exports org.eclipse.aether.internal.impl.scope;
+    exports org.eclipse.aether.internal.impl.session;
+    exports org.eclipse.aether.internal.impl.synccontext;
+    exports org.eclipse.aether.internal.impl.transport.http;
 }
