@@ -25,4 +25,6 @@ module org.apache.maven.resolver.transport.classpath {
     requires org.apache.maven.resolver;
     requires org.apache.maven.resolver.spi;
     requires org.apache.maven.resolver.util;
+
+    exports org.eclipse.aether.transport.classpath;
 }

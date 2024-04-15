@@ -25,4 +25,6 @@ module org.apache.maven.resolver.transport.file {
     requires org.slf4j;
     requires org.apache.maven.resolver;
     requires org.apache.maven.resolver.spi;
+
+    exports org.eclipse.aether.transport.file;
 }
