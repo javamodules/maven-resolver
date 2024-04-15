@@ -683,10 +683,10 @@
 
   <profiles>
     <profile>
-      <id>signing</id>
+      <id>sigstore</id>
       <activation>
         <property>
-          <name>sign</name>
+          <name>sigstore</name>
           <value>true</value>
         </property>
       </activation>
@@ -705,6 +705,19 @@
               </execution>
             </executions>
           </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>signing</id>
+      <activation>
+        <property>
+          <name>sign</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
