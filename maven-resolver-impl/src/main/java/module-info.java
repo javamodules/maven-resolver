@@ -16,24 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.maven.resolver.examples;
-
-import org.apache.maven.resolver.examples.util.Booter;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Runs all demos at once as part of UT.
+ * Maven Resolver Implementation
  */
-@Disabled
-public class AllResolverDemosTest {
-    @Test
-    void supplier() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SUPPLIER});
-    }
-
-    @Test
-    void sisu() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SISU});
-    }
+module org.apache.maven.resolver.impl {
+    requires static java.inject;
+    requires org.slf4j;
+    requires org.apache.maven.resolver;
+    requires org.apache.maven.resolver.spi;
+    requires org.apache.maven.resolver.named;
+    requires org.apache.maven.resolver.util;
 }

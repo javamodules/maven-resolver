@@ -33,8 +33,7 @@
   <description>Maven Artifact Transport JDK Java 11+.</description>
 
   <properties>
-    <Automatic-Module-Name>org.apache.maven.resolver.transport.jdk</Automatic-Module-Name>
-    <Bundle-SymbolicName>${Automatic-Module-Name}</Bundle-SymbolicName>
+    <Bundle-SymbolicName>org.apache.maven.resolver.transport.jdk</Bundle-SymbolicName>
 
     <javaVersion>11</javaVersion>
   </properties>
@@ -77,8 +76,8 @@
       <artifactId>maven-resolver-util</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
+      <groupId>jakarta.inject</groupId>
+      <artifactId>jakarta.inject-api</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>

@@ -33,8 +33,7 @@
   <description>Maven Artifact Transport JDK Java 11+.</description>
 
   <properties>
-    <Automatic-Module-Name>org.apache.maven.resolver.transport.jdk</Automatic-Module-Name>
-    <Bundle-SymbolicName>${Automatic-Module-Name}</Bundle-SymbolicName>
+    <Bundle-SymbolicName>org.apache.maven.resolver.transport.jdk</Bundle-SymbolicName>
 
     <javaVersion>8</javaVersion>
   </properties>
@@ -57,8 +56,8 @@
       <artifactId>maven-resolver-util</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
+      <groupId>jakarta.inject</groupId>
+      <artifactId>jakarta.inject-api</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
@@ -69,6 +68,31 @@
       <plugin>
         <groupId>org.eclipse.sisu</groupId>
         <artifactId>sisu-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <configuration>
+              <excludes>
+                <exclude>module-info.java</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>compile-java-9</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <release>9</release>
+              <multiReleaseOutput>true</multiReleaseOutput>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>biz.aQute.bnd</groupId>

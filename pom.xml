@@ -100,7 +100,8 @@
     <checkstyle.violation.ignore>None</checkstyle.violation.ignore>
     <sisuVersion>0.9.0.M2</sisuVersion>
     <guiceVersion>6.0.0</guiceVersion>
-    <slf4jVersion>2.0.12</slf4jVersion>
+    <guavaVersion>33.0.0-jre-jpms</guavaVersion>
+    <slf4jVersion>2.0.13</slf4jVersion>
     <!-- Used by Jetty Transport (client) and Test HTTP (server) -->
     <jettyVersion>10.0.20</jettyVersion>
     <!-- used by supplier and demo only -->
@@ -109,7 +110,7 @@
     <minimalMavenBuildVersion>[3.8.8,)</minimalMavenBuildVersion>
     <!-- MRESOLVER-422: keep this in sync with Javadoc plugin configuration (but cannot directly, as this below is range) -->
     <minimalJavaBuildVersion>[21,)</minimalJavaBuildVersion>
-    <project.build.outputTimestamp>2024-03-29T11:53:18Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2024-04-14T22:40:34Z</project.build.outputTimestamp>
     <!-- site fixes: skip PMD as it does not support Java 21 -->
     <pmd.skip>true</pmd.skip>
   </properties>
@@ -205,6 +206,12 @@
       </dependency>
 
       <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guavaVersion}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-bom</artifactId>
         <version>${jettyVersion}</version>
@@ -239,10 +246,9 @@
       </dependency>
 
       <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>1</version>
-        <scope>provided</scope>
+        <groupId>jakarta.inject</groupId>
+        <artifactId>jakarta.inject-api</artifactId>
+        <version>1.0.5</version>
       </dependency>
 
       <dependency>
@@ -287,6 +293,19 @@
     </dependencies>
   </dependencyManagement>
 
+  <repositories>
+    <repository>
+      <releases />
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <releases />
+      <id>jpms-attic</id>
+      <url>https://jpms.pkg.st/repository</url>
+    </repository>
+  </repositories>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -296,11 +315,11 @@
           <version>0.20.0</version>
           <configuration>
             <oldVersion>
-              <!-- We compare same module against 1.8.0 set as "baseline" -->
+              <!-- We compare same module against previous set as "baseline" -->
               <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>${project.artifactId}</artifactId>
-                <version>1.9.16</version>
+                <version>2.0.0-alpha-10</version>
                 <type>${project.packaging}</type>
               </dependency>
             </oldVersion>
@@ -557,6 +576,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.2.5</version>
           <configuration>
             <argLine>-Xmx128m</argLine>
             <redirectTestOutputToFile>${surefire.redirectTestOutputToFile}</redirectTestOutputToFile>
@@ -621,13 +641,24 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
+          <version>3.4.0</version>
           <configuration>
+            <excludes>
+              <exclude>META-INF/versions/9/org</exclude>
+              <exclude>META-INF/versions/9/org/**</exclude>
+              <exclude>META-INF/versions/9/org/**/*.class</exclude>
+            </excludes>
             <archive>
               <manifestEntries>
-                <Automatic-Module-Name>${Automatic-Module-Name}</Automatic-Module-Name>
+                <Multi-Release>true</Multi-Release>
               </manifestEntries>
             </archive>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.13.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -639,6 +670,7 @@
           <proc>none</proc>
           <compilerArgs>
             <compilerArg>-Xlint:deprecation</compilerArg>
+            <compilerArg>-Xlint:-options</compilerArg>
           </compilerArgs>
         </configuration>
       </plugin>

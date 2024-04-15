@@ -16,24 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.maven.resolver.examples;
-
-import org.apache.maven.resolver.examples.util.Booter;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Runs all demos at once as part of UT.
+ * Maven Resolver Utilities
  */
-@Disabled
-public class AllResolverDemosTest {
-    @Test
-    void supplier() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SUPPLIER});
-    }
+module org.apache.maven.resolver.util {
+    requires org.apache.maven.resolver;
 
-    @Test
-    void sisu() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SISU});
-    }
+    exports org.eclipse.aether.util;
+    exports org.eclipse.aether.util.artifact;
+    exports org.eclipse.aether.util.concurrency;
+    exports org.eclipse.aether.util.filter;
+    exports org.eclipse.aether.util.graph.manager;
+    exports org.eclipse.aether.util.graph.selector;
+    exports org.eclipse.aether.util.graph.transformer;
+    exports org.eclipse.aether.util.graph.visitor;
+    exports org.eclipse.aether.util.listener;
+    exports org.eclipse.aether.util.repository;
+    exports org.eclipse.aether.util.version;
 }

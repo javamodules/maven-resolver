@@ -16,24 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.maven.resolver.examples;
-
-import org.apache.maven.resolver.examples.util.Booter;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Runs all demos at once as part of UT.
+ * Maven Resolver Transport (JDK 11)
  */
-@Disabled
-public class AllResolverDemosTest {
-    @Test
-    void supplier() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SUPPLIER});
-    }
+module org.apache.maven.resolver.transport.jdk {
+    requires static java.inject;
+    requires java.net.http;
+    requires org.slf4j;
+    requires org.apache.maven.resolver;
+    requires org.apache.maven.resolver.spi;
+    requires org.apache.maven.resolver.util;
 
-    @Test
-    void sisu() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SISU});
-    }
+    exports org.eclipse.aether.transport.jdk;
 }
