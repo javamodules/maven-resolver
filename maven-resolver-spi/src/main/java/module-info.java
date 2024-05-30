@@ -16,24 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.maven.resolver.examples;
-
-import org.apache.maven.resolver.examples.util.Booter;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Runs all demos at once as part of UT.
+ * Maven Resolver SPI
  */
-@Disabled
-public class AllResolverDemosTest {
-    @Test
-    void supplier() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SUPPLIER});
-    }
+module org.apache.maven.resolver.spi {
+    requires org.apache.maven.resolver;
 
-    @Test
-    void sisu() throws Exception {
-        AllResolverDemos.main(new String[] {Booter.SISU});
-    }
+    exports org.eclipse.aether.spi.artifact;
+    exports org.eclipse.aether.spi.artifact.decorator;
+    exports org.eclipse.aether.spi.artifact.generator;
+    exports org.eclipse.aether.spi.checksums;
+    exports org.eclipse.aether.spi.connector;
+    exports org.eclipse.aether.spi.connector.checksum;
+    exports org.eclipse.aether.spi.connector.filter;
+    exports org.eclipse.aether.spi.connector.layout;
+    exports org.eclipse.aether.spi.connector.transport;
+    exports org.eclipse.aether.spi.connector.transport.http;
+    exports org.eclipse.aether.spi.io;
+    exports org.eclipse.aether.spi.localrepo;
+    exports org.eclipse.aether.spi.resolution;
+    exports org.eclipse.aether.spi.synccontext;
 }

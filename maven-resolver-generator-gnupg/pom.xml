@@ -32,11 +32,11 @@
   <description>A generator implementation for GnuPG signatures.</description>
 
   <properties>
-    <Automatic-Module-Name>org.apache.maven.resolver.generator.gnupg</Automatic-Module-Name>
-    <Bundle-SymbolicName>${Automatic-Module-Name}</Bundle-SymbolicName>
+    <Bundle-SymbolicName>org.apache.maven.resolver.generator.gnupg</Bundle-SymbolicName>
 
     <javaVersion>17</javaVersion>
     <bouncycastleVersion>1.78</bouncycastleVersion>
+    <argLine>-XX:+EnableDynamicAgentLoading</argLine>
   </properties>
 
   <dependencies>
@@ -57,8 +57,8 @@
       <artifactId>slf4j-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
+      <groupId>jakarta.inject</groupId>
+      <artifactId>jakarta.inject-api</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
@@ -133,6 +133,13 @@
           <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
           </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>@{argLine} --add-reads=org.bouncycastle.pg=org.bouncycastle.util</argLine>
         </configuration>
       </plugin>
     </plugins>

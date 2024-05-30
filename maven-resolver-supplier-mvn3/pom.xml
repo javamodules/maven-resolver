@@ -76,8 +76,8 @@
       <version>${maven3Version}</version>
       <exclusions>
         <exclusion>
-          <groupId>javax.inject</groupId>
-          <artifactId>javax.inject</artifactId>
+          <groupId>jakarta.inject</groupId>
+          <artifactId>jakarta.inject-api</artifactId>
         </exclusion>
         <exclusion>
           <groupId>org.eclipse.sisu</groupId>
@@ -99,8 +99,8 @@
       <version>${maven3Version}</version>
       <exclusions>
         <exclusion>
-          <groupId>javax.inject</groupId>
-          <artifactId>javax.inject</artifactId>
+          <groupId>jakarta.inject</groupId>
+          <artifactId>jakarta.inject-api</artifactId>
         </exclusion>
         <exclusion>
           <groupId>jakarta.inject</groupId>

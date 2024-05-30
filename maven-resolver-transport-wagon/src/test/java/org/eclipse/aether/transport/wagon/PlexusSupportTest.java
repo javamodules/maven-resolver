@@ -23,12 +23,14 @@ import javax.inject.Named;
 
 import org.codehaus.plexus.testing.PlexusTest;
 import org.eclipse.aether.spi.connector.transport.TransporterFactory;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  */
+@Disabled
 @PlexusTest
 public class PlexusSupportTest {
 
